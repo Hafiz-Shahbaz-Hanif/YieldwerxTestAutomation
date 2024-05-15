@@ -8,5 +8,3 @@ Feature: Login Functionality
         |michael   |Test.123  |
     And I click on Login button
     Then I should get logged in
-
-

@@ -16,7 +16,7 @@ def step_impl(context):
 
 @when('I click on Login button')
 def step_impl(context):
-    context.account_page = context.login_page.click_on_login_button()
+    context.login_page.click_on_login_button()
 
 
 @then('I should get logged in')
