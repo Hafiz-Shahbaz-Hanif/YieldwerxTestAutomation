@@ -3,9 +3,9 @@ Feature: PAT
 	@YWPD-TC-339
 	Scenario: Verify that user is able to generate the Static PAT Test Program Level Rule
 		Given Click on say "Quality & PAT" in the left menu bar
-#		When Click on PAT Rules
-#		And Click 'New Static PAT' button from PAT Rules window
-#		And Create PAT Rule window will be open and enter rule <Name> and description in 'General' tab
+		When Click on PAT Rules
+		And Click "New Static PAT" button from PAT Rules window
+		And Create PAT Rule window will be open and enter rule as <Name> and description in 'General' tab
 #		And Navigate into the parameters tab and select the <Data Set Size> and <Facility>
 #		And After selecting <Facility> data will be populated automatically for work center, device and test program
 #		And Select the <Parameter Number>

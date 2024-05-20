@@ -28,8 +28,8 @@ def before_scenario(context,driver):
     context.login_page.enter_into_username_field(ConfigReader.read_configuration("credentials","username"))
     context.login_page.enter_into_password_field(ConfigReader.read_configuration("credentials","password"))
     context.login_page.click_on_login_button()
-    time.sleep(2)
     context.home_page = HomePage(context.driver)
+    time.sleep(2)
     assert context.home_page.verify_homepage_heading_text("Realtime SPC Templates")
 
 

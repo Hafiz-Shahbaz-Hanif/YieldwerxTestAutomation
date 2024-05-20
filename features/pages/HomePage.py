@@ -1,3 +1,5 @@
+from selenium.webdriver.common.by import By
+
 from features.pages.BasePage import BasePage
 
 
@@ -10,6 +12,8 @@ class HomePage(BasePage):
     quality_and_pat_xpath = "//span[normalize-space()='Quality & PAT']"
     username_dropdown_xpath = "//span[normalize-space()='Michael Justin']//i[@class='icon-caret-down']"
     logout_link_xpath = "//span[normalize-space()='Logout']"
+    pat_rules_link_xpath = "//a[@href='/Rules']//span[contains(text(),'PAT Rules')]"
+    pat_link_xpath = "//span[normalize-space()='PAT']"
 
     def click_on_logout_link(self):
         self.click_on_element("logout_link_xpath", self.logout_link_xpath)
@@ -25,4 +29,11 @@ class HomePage(BasePage):
 
     def click_quality_and_pat_heading(self):
         self.click_on_element("quality_and_pat_xpath", self.quality_and_pat_xpath)
+
+
+    def click_pat_rules_heading(self):
+        self.click_on_element("pat_rules_link_xpath", self.pat_rules_link_xpath)
+
+    def click_pat_heading(self):
+        self.click_on_element("pat_link_xpath", self.pat_link_xpath)
 
