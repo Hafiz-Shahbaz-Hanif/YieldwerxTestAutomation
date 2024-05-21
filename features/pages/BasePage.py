@@ -1,10 +1,15 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
 
 
 class BasePage:
 
     def __init__(self, driver):
         self.driver = driver
+
+    def select_dropdown_option(self, locator_type, locator_value, text_value):
+        element = Select(self.get_element(locator_type, locator_value))
+        element.select_by_visible_text(text_value)
 
     def click_on_element(self, locator_type, locator_value):
         element = self.get_element(locator_type, locator_value)
