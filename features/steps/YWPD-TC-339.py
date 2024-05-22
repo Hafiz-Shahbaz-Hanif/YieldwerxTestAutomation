@@ -1,44 +1,46 @@
 import time
-
+import random
+from faker import Faker
 from behave import *
 from features.pages.HomePage import HomePage
 from features.pages.PatRulePage import PatRulePage
-from utilities import EmailWithTimeStampGenerator
 
 
 @given(u'Click on "{text}" in the left menu bar')
 def step_impl(context, text):
-    context.driver.implicitly_wait(5)
     context.home_page = HomePage(context.driver)
     context.home_page.verify_quality_and_pat_text(text)
     context.home_page.click_quality_and_pat_heading()
+    time.sleep(2)
 
 
-@when(u'Click on PAT Rules')
-def step_impl(context):
+@when(u'Click on "{text}"')
+def step_impl(context, text):
     context.home_page.click_pat_heading()
-    context.home_page.click_pat_rules_heading()
+    time.sleep(2)
+    context.home_page.click_pat_rule_heading()
 
 
 @when(u'Click "{text}" button from PAT Rules window')
 def step_impl(context, text):
     context.pat_rule_page = PatRulePage(context.driver)
     context.pat_rule_page.click_on_pat_rule_window()
-    time.sleep(3)
+    time.sleep(5)
 
 
 @when(u'Create PAT Rule window will be open and enter rule name as "{name}" and description in "{text}" tab')
 def step_impl(context, name, text):
     context.pat_rule_page.click_on_general_tab()
-    random_data = EmailWithTimeStampGenerator.get_new_email_with_timestamp()
-    context.pat_rule_page.enter_into_name_field(name + random_data)
+    fake = Faker()
+    context.rule_name = fake.name()
+    context.pat_rule_page.enter_into_name_field(context.rule_name)
 
 
 @when(u'Navigate into the parameters tab and select "{text}" as "{Facility}"')
 def step_impl(context, text, Facility):
     context.pat_rule_page.click_on_parameters_tab()
     context.pat_rule_page.click_on_facility_option()
-    time.sleep(3)
+    time.sleep(2)
 
 
 @when(u'After selecting "{text}" data will be populated automatically for work center, device and test program')
@@ -84,6 +86,7 @@ def step_impl(context,text):
 
 @when(u'Select Lot and click "Calculate" button')
 def step_impl(context):
+    time.sleep(2)
     context.pat_rule_page.select_lot_option("73631")
     context.pat_rule_page.click_on_lots_calculate_button()
     time.sleep(2)
@@ -107,3 +110,22 @@ def step_impl(context, Value_of_K):
 @when(u'Select option from "{PAT_limit_to_Apply}" dropdown')
 def step_impl(context, PAT_limit_to_Apply):
     context.pat_rule_page.select_pat_limit_to_apply(PAT_limit_to_Apply)
+
+
+@when(u'Provide "{hard_bin_lower_pat_limit}" and "{soft_bin_lower_pat_limit}"')
+def step_impl(context, hard_bin_lower_pat_limit, soft_bin_lower_pat_limit):
+    context.pat_rule_page.enter_into_hard_bin_lower_pat_limit(hard_bin_lower_pat_limit)
+    context.pat_rule_page.enter_into_soft_bin_lower_pat_limit(soft_bin_lower_pat_limit)
+
+
+@when(u'Then provide the "{hard_bin_upper_pat_limit}" and "{soft_bin_upper_pat_limit}"')
+def step_impl(context, hard_bin_upper_pat_limit, soft_bin_upper_pat_limit):
+    context.pat_rule_page.enter_into_hard_bin_upper_pat_limit(hard_bin_upper_pat_limit)
+    context.pat_rule_page.enter_into_soft_bin_upper_pat_limit(soft_bin_upper_pat_limit)
+
+
+@when(u'Click "{Save}" button')
+def step_impl(context, Save):
+    context.pat_rule_page.click_on_save_button()
+    time.sleep(5)
+    context.pat_rule_page.verify_newly_created_pat_rule_name(context.rule_name)

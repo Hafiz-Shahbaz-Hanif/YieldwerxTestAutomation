@@ -27,6 +27,13 @@ class PatRulePage(BasePage):
     every_lot_field_id = "Notify_LotCount"
     value_of_k_field_id = "Static_Val_K"
     pat_limit_to_apply_dropdown_id = "LimitToApplyId"
+    hard_bin_lower_pat_limit_xpath = "(//input[@id='custom-bin-number-lower-static'])[1]"
+    soft_bin_lower_pat_limit_xpath = "(//input[@id='custom-soft-bin-number-lower-static'])[1]"
+    hard_bin_upper_pat_limit_xpath = "(//input[@id='custom-bin-number-upper-static'])[1]"
+    soft_bin_upper_pat_limit_xpath = "(//input[@id='custom-soft-bin-number-upper-static'])[1]"
+    save_button_xpath = "(//input[@id='btn-save'])[1]"
+    pat_rule_name_xpath = "//tr[@id='15']/td[3]"
+
 
     def select_pat_limit_to_apply(self, text_value):
         self.select_dropdown_option("pat_limit_to_apply_dropdown_id", self.pat_limit_to_apply_dropdown_id, text_value)
@@ -36,6 +43,9 @@ class PatRulePage(BasePage):
 
     def select_bin_type_option(self, text_value):
         self.select_dropdown_option("bin_type_dropdown_xpath", self.bin_type_dropdown_xpath, text_value)
+
+    def click_on_save_button(self):
+        self.click_on_element("save_button_xpath", self.save_button_xpath)
 
     def click_on_parameternumber_option(self):
         self.click_on_element("parameter_number_option_xpath", self.parameter_number_option_xpath)
@@ -84,6 +94,22 @@ class PatRulePage(BasePage):
 
     def enter_into_value_of_k_field(self, name_text):
         self.type_into_element("value_of_k_field_id", self.value_of_k_field_id, name_text)
+
+    def enter_into_hard_bin_lower_pat_limit(self, name_text):
+        self.type_into_element("hard_bin_lower_pat_limit_xpath", self.hard_bin_lower_pat_limit_xpath, name_text)
+
+    def enter_into_soft_bin_lower_pat_limit(self, name_text):
+        self.type_into_element("soft_bin_lower_pat_limit_xpath", self.soft_bin_lower_pat_limit_xpath, name_text)
+
+    def enter_into_hard_bin_upper_pat_limit(self, name_text):
+        self.type_into_element("hard_bin_upper_pat_limit_xpath", self.hard_bin_upper_pat_limit_xpath, name_text)
+
+    def enter_into_soft_bin_upper_pat_limit(self, name_text):
+        self.type_into_element("soft_bin_upper_pat_limit_xpath", self.soft_bin_upper_pat_limit_xpath, name_text)
+
+    def verify_newly_created_pat_rule_name(self, name_text):
+        self.retrieved_element_text_equals("pat_rule_name_xpath", self.pat_rule_name_xpath, name_text)
+
 
 
 
