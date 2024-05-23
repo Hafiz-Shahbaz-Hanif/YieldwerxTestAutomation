@@ -33,6 +33,8 @@ class PatRulePage(BasePage):
     soft_bin_upper_pat_limit_xpath = "(//input[@id='custom-soft-bin-number-upper-static'])[1]"
     save_button_xpath = "(//input[@id='btn-save'])[1]"
     pat_rule_name_xpath = "//tr[@id='15']/td[3]"
+    validate_pat_limits_checkbox_xpath = "//input[@id='IsValidate_PAT_Limits']"
+    select_lots_field_id = "Notify_LotCount"
 
 
     def select_pat_limit_to_apply(self, text_value):
@@ -74,7 +76,7 @@ class PatRulePage(BasePage):
     def click_on_static_limit_tab(self):
         self.click_on_element("static_limits_tab_id", self.static_limits_tab_id)
 
-    def click_on_pat_rule_window(self):
+    def click_new_static_pat_link(self):
         self.click_on_element("new_static_pat_rule_window_xpath", self.new_static_pat_rule_window_xpath)
 
     def click_on_general_tab(self):
@@ -109,6 +111,15 @@ class PatRulePage(BasePage):
 
     def verify_newly_created_pat_rule_name(self, name_text):
         self.retrieved_element_text_equals("pat_rule_name_xpath", self.pat_rule_name_xpath, name_text)
+
+    def verify_validate_pat_limits_checkbox_display(self):
+        return self.display_status("validate_pat_limits_checkbox_xpath", self.validate_pat_limits_checkbox_xpath)
+
+    def verify_lots_number_display(self):
+        return self.display_status("select_lots_dropdown_id", self.select_lots_dropdown_id)
+
+    def verify_lots_field_display(self):
+        return self.display_status("select_lots_field_id", self.select_lots_field_id)
 
 
 

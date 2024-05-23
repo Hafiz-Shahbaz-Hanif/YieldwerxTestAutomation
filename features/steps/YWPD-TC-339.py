@@ -24,7 +24,8 @@ def step_impl(context, text):
 @when(u'Click "{text}" button from PAT Rules window')
 def step_impl(context, text):
     context.pat_rule_page = PatRulePage(context.driver)
-    context.pat_rule_page.click_on_pat_rule_window()
+    time.sleep(2)
+    context.pat_rule_page.click_new_static_pat_link()
     time.sleep(5)
 
 
@@ -59,7 +60,7 @@ def step_impl(context, Parameter_Number):
 
 @when(u'Keep default settings for "{text}" check box')
 def step_impl(context, text):
-    print('Keep default selection')
+    assert context.pat_rule_page.verify_validate_pat_limits_checkbox_display()
 
 
 @when(u'Select Bin Type from drop down')
@@ -81,15 +82,15 @@ def step_impl(context,text):
 
 @when(u'Create PAT Rule window will open after clicking "{text}" button and available Lots will appear')
 def step_impl(context,text):
-    print('no implementation required')
+    time.sleep(2)
+    assert context.pat_rule_page.verify_lots_number_display()
 
 
 @when(u'Select Lot and click "Calculate" button')
 def step_impl(context):
-    time.sleep(2)
     context.pat_rule_page.select_lot_option("73631")
     context.pat_rule_page.click_on_lots_calculate_button()
-    time.sleep(2)
+    time.sleep(5)
 
 
 @when(u'Value for "{Low_Seed_Limit}" and "{High_Seed_Limit}" will be calculated automatically')
