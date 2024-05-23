@@ -54,3 +54,7 @@ class BasePage:
         element = self.get_element(locator_type, locator_value)
         return element.is_displayed()
 
+    def wait_for_element_to_be_located(self, locator_type, locator_value, timeout=10):
+        located_element = WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located(self.get_element(locator_type, locator_value)))
+        located_element.is_displayed()
+

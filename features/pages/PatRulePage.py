@@ -1,4 +1,6 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 from features.pages.BasePage import BasePage
 
@@ -32,10 +34,9 @@ class PatRulePage(BasePage):
     hard_bin_upper_pat_limit_xpath = "(//input[@id='custom-bin-number-upper-static'])[1]"
     soft_bin_upper_pat_limit_xpath = "(//input[@id='custom-soft-bin-number-upper-static'])[1]"
     save_button_xpath = "(//input[@id='btn-save'])[1]"
-    pat_rule_name_xpath = "//tr[@id='15']/td[3]"
+    pat_rule_name_xpath = "//table[@id='RulesGrid']/tbody/tr[2]/td[3]"
     validate_pat_limits_checkbox_xpath = "//input[@id='IsValidate_PAT_Limits']"
     select_lots_field_id = "Notify_LotCount"
-
 
     def select_pat_limit_to_apply(self, text_value):
         self.select_dropdown_option("pat_limit_to_apply_dropdown_id", self.pat_limit_to_apply_dropdown_id, text_value)

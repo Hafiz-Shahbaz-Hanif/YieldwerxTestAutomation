@@ -95,7 +95,7 @@ def step_impl(context):
 
 @when(u'Value for "{Low_Seed_Limit}" and "{High_Seed_Limit}" will be calculated automatically')
 def step_impl(context, Low_Seed_Limit, High_Seed_Limit):
-    print('no implementation required')
+    assert context.pat_rule_page.verify_lots_field_display()
 
 
 @when(u'Enter the lot number for "{After_Every_Lots}"')
