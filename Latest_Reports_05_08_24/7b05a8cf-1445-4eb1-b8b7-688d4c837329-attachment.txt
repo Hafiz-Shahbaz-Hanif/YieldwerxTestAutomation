@@ -1,0 +1,1 @@
+"General" tab, "Input Data & Rule Selection", "Output Data Selection" and "Manage Exceptions"

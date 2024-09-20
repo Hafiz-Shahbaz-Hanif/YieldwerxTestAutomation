@@ -1,0 +1,1 @@
+and window will be refresh and the deleted policy removed from "SWMPolicies" table in database
